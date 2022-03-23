@@ -8,5 +8,4 @@ import br.com.process.model.NotaFiscal;
 @Repository
 public interface NotaFiscalRepository extends JpaRepository<NotaFiscal, Integer> {
 
-	NotaFiscal findByNomeArquivo(String nome);
 }

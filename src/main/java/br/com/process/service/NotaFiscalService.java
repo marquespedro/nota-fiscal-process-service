@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import br.com.process.dto.NotaFiscalXml;
-import br.com.process.dto.NotaFiscalXml.DuplicataXml;
-import br.com.process.dto.NotaFiscalXml.ElementXml;
+import br.com.process.dto.NotaFiscalDTO;
+import br.com.process.dto.NotaFiscalDTO.DuplicataXml;
+import br.com.process.dto.NotaFiscalDTO.ElementXml;
 import br.com.process.exception.ConverterXmlNotaException;
 import br.com.process.model.Duplicata;
 import br.com.process.model.NotaFiscal;
@@ -36,7 +36,7 @@ public class NotaFiscalService {
 	
 	public NotaFiscal convertXmlParaNotaFiscal(String nomeArquivo) throws IOException {
 
-		NotaFiscalXml notaFiscalXml = converterXmlParaNotaFiscalXml(nomeArquivo);
+		NotaFiscalDTO notaFiscalXml = converterXmlParaNotaFiscalXml(nomeArquivo);
 
 		return montarNotaFiscal(notaFiscalXml, nomeArquivo);
 	}
@@ -56,7 +56,7 @@ public class NotaFiscalService {
 		return nota;
 	}
 	
-	private NotaFiscal montarNotaFiscal(NotaFiscalXml notaFiscalXml, String nomeArquivo) {
+	private NotaFiscal montarNotaFiscal(NotaFiscalDTO notaFiscalXml, String nomeArquivo) {
 
 		ElementXml elementXml = notaFiscalXml.getElement();
 
@@ -84,7 +84,7 @@ public class NotaFiscalService {
 		return duplicatas.collect(Collectors.toList());
 	}
 	
-	private NotaFiscalXml converterXmlParaNotaFiscalXml(String nomeArquivo) throws IOException {
+	private NotaFiscalDTO converterXmlParaNotaFiscalXml(String nomeArquivo) throws IOException {
 		
 		String caminhoEntrada = diretorioService.obterCaminhoEntrada() + File.separator + nomeArquivo;
 		
@@ -94,7 +94,7 @@ public class NotaFiscalService {
 		
 		byte [] conteudo = Files.readAllBytes(path);
 
-		NotaFiscalXml notaFiscalXml =  mapper.readValue(new String(conteudo), NotaFiscalXml.class);;
+		NotaFiscalDTO notaFiscalXml =  mapper.readValue(new String(conteudo), NotaFiscalDTO.class);;
 		
 		return notaFiscalXml;
 	}
