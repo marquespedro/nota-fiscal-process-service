@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<element>
+		<chave>35180706225746000422550010000106141999893856</chave>
+		<dataHoraRegistro>1647204068528</dataHoraRegistro>
+		<descricaoStatus>Em processamento</descricaoStatus>
+		<duplicatas>
+			<element>
+				<dataVencimento>1647205884478</dataVencimento>
+				<numeroParcela>4</numeroParcela>
+				<valorParcela>3814.5</valorParcela>
+			</element>
+		</duplicatas>
+		<nomeArquivo>procNFe1.xml</nomeArquivo>
+		<nomeDestinatario>JOÃO ALBERTO</nomeDestinatario>
+		<nomeEmitente>JS COMERCIAL E DISTRIBUIDORA LTDA.</nomeEmitente>
+		<valor>15258.0</valor>
+	</element>
+</root>
