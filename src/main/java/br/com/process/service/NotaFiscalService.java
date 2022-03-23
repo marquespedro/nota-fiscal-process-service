@@ -23,7 +23,7 @@ import br.com.process.exception.ConverterXmlNotaException;
 import br.com.process.model.Duplicata;
 import br.com.process.model.NotaFiscal;
 import br.com.process.model.StatusProcessamento;
-import br.com.process.repository.NotaFiscalRepository;
+import br.com.process.repository.NotaFiscalRepositoryCustom;
 
 @Service
 public class NotaFiscalService {
@@ -32,7 +32,7 @@ public class NotaFiscalService {
 	private DiretorioService diretorioService;
 	
 	@Autowired
-	private NotaFiscalRepository repository;
+	private NotaFiscalRepositoryCustom repository;
 	
 	public NotaFiscal convertXmlParaNotaFiscal(String nomeArquivo) throws IOException {
 
@@ -43,7 +43,7 @@ public class NotaFiscalService {
 	
 	@Transactional
 	public NotaFiscal salvar(NotaFiscal notaFiscal) {
-		return repository.save(notaFiscal);
+		return repository.salvar(notaFiscal);
 	} 
 	
 
