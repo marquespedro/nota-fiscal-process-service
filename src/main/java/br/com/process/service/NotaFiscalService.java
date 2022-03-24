@@ -86,7 +86,7 @@ public class NotaFiscalService {
 	
 	private NotaFiscalDTO converterXmlParaNotaFiscalXml(String nomeArquivo) throws IOException {
 		
-		String caminhoEntrada = diretorioService.obterCaminhoEntrada() + File.separator + nomeArquivo;
+		String caminhoEntrada = diretorioService.obterPathDiretorioInput() + File.separator + nomeArquivo;
 		
 		Path path = Paths.get(caminhoEntrada);
 				

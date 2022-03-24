@@ -31,7 +31,7 @@ public class Processador {
 	 */
 	@Scheduled(cron="0 0/2 * 1/1 * ?")
 	public void job() {
-		File diretorio = new File(diretorioService.obterCaminhoEntrada());
+		File diretorio = new File(diretorioService.obterPathDiretorioInput());
 		String[] arquivos = diretorio.list();	
 		Arrays.asList(arquivos).parallelStream().forEach(processar());
 	}
@@ -41,8 +41,8 @@ public class Processador {
 			
 			NotaFiscal nota = null;
 
-			String diretorioErro = diretorioService.obterCaminhoErro() + File.separator + nomeArquivo;
-			String diretorioSaida = diretorioService.obterCaminhoSaida() + File.separator + nomeArquivo;
+			String diretorioErro = diretorioService.obterPathDiretorioErro(nomeArquivo) ;
+			String diretorioSaida = diretorioService.obterPathDiretorioOutput(nomeArquivo);
 			
 			try  {
 				

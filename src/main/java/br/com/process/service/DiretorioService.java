@@ -24,9 +24,9 @@ public class DiretorioService {
 
 	public void deletarArquivoDiretorioEntrada(String nomeArquivo) {
 
-		String caminhoArquivo = obterCaminhoEntrada() + File.separator + nomeArquivo;
+		String path = obterPathDiretorioInput(nomeArquivo);
 
-		File file = new File(caminhoArquivo);
+		File file = new File(path);
 
 		if (file.exists()) {
 			file.delete();
@@ -35,9 +35,9 @@ public class DiretorioService {
 
 	public void moverParaDiretorio(String diretorioMover, String nomeArquivo) {
 
-		String arquivoEntrada = obterCaminhoEntrada() + File.separator + nomeArquivo;
+		String arquivoEntrada = obterPathDiretorioInput(nomeArquivo);
 		Path path = Paths.get(arquivoEntrada);
-
+			
 		try (FileOutputStream out = new FileOutputStream(diretorioMover)) {
 			byte[] conteudo = Files.readAllBytes(path);
 			out.write(conteudo);
@@ -47,19 +47,23 @@ public class DiretorioService {
 
 	}
 
-	public String obterCaminhoEntrada() {
-		return obterCaminhoUsuario() + File.separator + this.propInputArquivos;
+	public String obterPathDiretorioInput() {
+		return obterPathDiretorioUsuario() + File.separator + this.propInputArquivos;
+	}
+	
+	public String obterPathDiretorioInput(String nomeArquivo) {
+		return obterPathDiretorioInput() + File.separator + nomeArquivo;
 	}
 
-	public String obterCaminhoSaida() {
-		return obterCaminhoUsuario() + File.separator + this.propOutputArquivos;
+	public String obterPathDiretorioOutput(String nomeArquivo) {
+		return obterPathDiretorioUsuario() + File.separator + this.propOutputArquivos + File.separator + nomeArquivo;
 	}
 
-	public String obterCaminhoErro() {
-		return obterCaminhoUsuario() + File.separator + this.propErroArquivos;
+	public String obterPathDiretorioErro(String nomeArquivo) {
+		return obterPathDiretorioUsuario() + File.separator + this.propErroArquivos + File.separator + nomeArquivo;
 	}
 
-	private String obterCaminhoUsuario() {
+	private String obterPathDiretorioUsuario() {
 		return System.getProperty("user.home");
 	}
 }
